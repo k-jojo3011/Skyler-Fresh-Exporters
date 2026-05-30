@@ -3,5 +3,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/Skyler-Fresh-Exporters/",
+  // Removed the base property so it defaults to "/" for Netlify
 });

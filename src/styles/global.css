@@ -1,0 +1,37 @@
+/* ================================
+   GLOBAL SECTION SPACING SYSTEM
+================================ */
+
+/* Option 1: BEST PRACTICE (recommended) */
+.home-layout > * + * {
+  margin-top: 90px;
+}
+
+/* GLOBAL SECTION SPACING (🔥 IMPORTANT FIX) */
+/* GLOBAL SECTION SPACING (🔥 IMPORTANT FIX) */
+section,
+.fs-section,
+.journal-section,
+.about-section,
+.hero-section,
+.category-section,
+.newsletter-section {
+  padding: 90px 0;
+}
+
+/* Remove spacing after footer */
+.home-layout > footer {
+  margin-top: 0;
+}
+
+.fs-section,
+.journal-section,
+.about-section {
+  margin-bottom: 20px;
+}
+/* Responsive spacing */
+@media (max-width: 768px) {
+  .home-layout > * + * {
+    margin-top: 60px;
+  }
+}

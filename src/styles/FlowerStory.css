@@ -1,0 +1,71 @@
+/* src/styles/FlowerStory.css */
+
+.fs-section {
+    background: #e9eaec;
+    padding: 90px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* NOW SINGLE COLUMN CENTERED */
+.fs-container {
+    max-width: 800px;
+    text-align: center;
+}
+
+/* TEXT */
+.fs-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #8a9e82;
+    margin-bottom: 12px;
+}
+
+.fs-title {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: #2c3e2d;
+    line-height: 1.1;
+    margin-bottom: 18px;
+}
+
+.fs-title em {
+    font-style: italic;
+    color: #c4856a;
+}
+
+.fs-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #5a5a5a;
+    margin-bottom: 14px;
+}
+
+/* BUTTON */
+.fs-btn {
+    margin-top: 18px;
+    padding: 12px 26px;
+    border: 1px solid #2c3e2d;
+    background: transparent;
+    color: #2c3e2d;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.fs-btn:hover {
+    background: #2c3e2d;
+    color: #fff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .fs-title {
+        font-size: 34px;
+    }
+}

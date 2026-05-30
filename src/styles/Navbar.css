@@ -1,0 +1,271 @@
+/* =============================================
+   Navbar.css  —  Black & Blue theme
+   ============================================= */
+
+/* ── TOP BAR ── */
+.topBar {
+  background: #0d1117;
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+}
+
+/* ── MAIN NAVBAR ── */
+.modernNavbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e2eaf4;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap: 20px;
+  box-shadow: 0 1px 0 #e2eaf4;
+}
+
+/* ── LOGO ── */
+.navLogo {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #0d1117;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.navLogo span { color: #1a6abf; }
+
+/* ── CENTER LINKS ── */
+.navCenter {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+.navCenter a {
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  letter-spacing: 0.01em;
+  transition: color 0.18s;
+  white-space: nowrap;
+}
+.navCenter a:hover { color: #1a6abf; }
+
+/* ── RIGHT SIDE ── */
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.navIconBtn {
+  background: none;
+  border: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12.5px;
+  font-family: inherit;
+  transition: background 0.18s, color 0.18s;
+}
+.navIconBtn:hover { background: #f0f5ff; color: #1a6abf; }
+
+.navDivider {
+  width: 1px;
+  height: 20px;
+  background: #e2eaf4;
+  margin: 0 4px;
+}
+
+/* Cart badge */
+.navCartBtn { position: relative; }
+.cartBadge {
+  position: absolute;
+  top: 2px; right: 2px;
+  background: #1a6abf;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  pointer-events: none;
+}
+
+/* ── CURRENCY BUTTON ── */
+.currencyWrap { position: relative; }
+
+.navCurrency { gap: 5px; }
+.currencyCode {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #0d1117;
+}
+.navCurrency--open { background: #f0f5ff; color: #1a6abf; }
+.navCurrency--open .currencyCode { color: #1a6abf; }
+
+.chevron {
+  transition: transform 0.22s ease;
+  flex-shrink: 0;
+}
+.chevron--up { transform: rotate(180deg); }
+
+/* ── CURRENCY DROPDOWN PANEL ── */
+.currencyDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #deeaf8;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(13,42,74,0.14);
+  min-width: 210px;
+  overflow: hidden;
+  z-index: 200;
+  animation: dropIn 0.18s ease;
+}
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── CURRENCY OPTION ROW ── */
+.currencyOption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+  text-align: left;
+  border-bottom: 1px solid #f0f5ff;
+}
+.currencyOption:last-child { border-bottom: none; }
+.currencyOption:hover { background: #f0f5ff; }
+
+/* Active / selected row */
+.currencyOption--active { background: #eef4ff; }
+.currencyOption--active .currencyOption__code { color: #1a6abf; font-weight: 700; }
+
+.currencyOption__symbol {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0d1117;
+  width: 22px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.currencyOption__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+}
+.currencyOption__code {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0d1117;
+  letter-spacing: 0.03em;
+}
+.currencyOption__label {
+  font-size: 11px;
+  color: #8aabcc;
+}
+.currencyOption__check {
+  color: #1a6abf;
+  flex-shrink: 0;
+}
+
+/* ── HAMBURGER ── */
+.navHamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.navHamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: #0d1117;
+  border-radius: 2px;
+  transition: all 0.25s;
+  transform-origin: center;
+}
+/* Animate to X when open */
+.navHamburger--open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navHamburger--open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.navHamburger--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE OVERLAY ── */
+.navOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 99;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .navHamburger { display: flex; }
+
+  .navCenter {
+    position: fixed;
+    top: 0; left: 0;
+    width: 270px;
+    height: 100%;
+    background: white;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    padding: 80px 0 32px;
+    z-index: 101;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.1);
+  }
+  .navCenter--open { transform: translateX(0); }
+
+  .navCenter a {
+    display: block;
+    width: 100%;
+    padding: 14px 28px;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f5ff;
+  }
+}
+
+@media (max-width: 480px) {
+  .modernNavbar { padding: 0 14px; gap: 10px; }
+  .navLogo      { font-size: 15px; }
+  /* Hide search & account on very small screens */
+  .navIconBtn:not(.navCartBtn):not(.navCurrency) { display: none; }
+  .navDivider   { display: none; }
+
+  /* Currency dropdown: full width on mobile */
+  .currencyDropdown { right: -60px; min-width: 190px; }
+}

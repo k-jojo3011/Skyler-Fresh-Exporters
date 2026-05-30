@@ -1,6 +1,5 @@
 // src/components/AboutSection.jsx
 import "../styles/AboutSection.css";
-import flowersImg from "../assets/images/Skyler-Sig-01.png";
 import aboutImg from "../assets/images/flowers.jpeg"; 
 
 // Uncomment when you have real images:

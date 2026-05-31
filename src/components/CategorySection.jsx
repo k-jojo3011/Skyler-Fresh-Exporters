@@ -63,7 +63,7 @@ const categoryData = {
       price: 350,
       from: false,
       image: "https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400&q=80",
-      swatches:["#530ff0", "#5910eb", "#3f21ea"],
+     
     },
     {
       id: 7,
@@ -72,7 +72,7 @@ const categoryData = {
       price: 280,
       from: true,
       image: "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400&q=80",
-      swatches: ["#530ff0", "#5910eb", "#3f21ea"],
+   
     },
     {
       id: 8,
@@ -81,7 +81,7 @@ const categoryData = {
       price: 320,
       from: false,
       image: "https://images.unsplash.com/photo-1515586000433-45406d8e6662?w=400&q=80",
-      swatches: ["#530ff0", "#5910eb", "#3f21ea"],
+ 
     },
     {
       id: 9,
@@ -90,7 +90,7 @@ const categoryData = {
       price:  300,
       from: true,
       image: "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=400&q=80",
-      swatches: ["#530ff0", "#5910eb", "#3f21ea"],
+    
     },
     {
       id: 10,
@@ -99,7 +99,7 @@ const categoryData = {
       price: 180,
       from: false,
       image: oregano,
-      swatches: ["#530ff0", "#5910eb", "#3f21ea"],
+     
     },
   ],
   "Vegetables & Fruits": [
@@ -110,7 +110,7 @@ const categoryData = {
       price: 450,
       from: true,
       image: "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&q=80",
-      swatches: ["#c94b4b", "#e87070", "#f5c8a0"],
+  
     },
     {
       id: 12,
@@ -119,7 +119,7 @@ const categoryData = {
       price: 600,
       from: false,
       image: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&q=80",
-      swatches: ["#f5a623", "#e8891a", "#2d5016"],
+    
     },
     {
       id: 13,
@@ -128,7 +128,7 @@ const categoryData = {
       price: 380,
       from: true,
       image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=400&q=80",
-      swatches: ["#4a6741", "#2d4a2d", "#8ab08a"],
+    
     },
     {
       id: 14,
@@ -137,7 +137,7 @@ const categoryData = {
       price: 420,
       from: false,
       image: "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&q=80",
-      swatches: ["#c94b4b", "#f5a623", "#f5d423"],
+   
     },
     {
       id: 15,
@@ -146,7 +146,7 @@ const categoryData = {
       price: 250,
       from: true,
       image: "https://images.unsplash.com/photo-1604495772376-9657f0033fa8?w=400&q=80",
-      swatches: ["#6b3a8a", "#9b5ab8", "#f5e6c8"],
+   
     },
   ],
 };

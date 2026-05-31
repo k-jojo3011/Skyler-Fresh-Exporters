@@ -1,13 +1,12 @@
-// App.jsx
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-
 import Home from "./pages/Home";
-import WhatsAppButton from "./components/WhatsAppButton";
 import Contact from "./pages/Contact";
+import ProductDetailPage from "./pages/ProductDetailPage";
+
 import CartDrawer from "./components/CartDrawer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -50,17 +49,20 @@ function App() {
             };
           }
         }
+
         return item;
       })
     );
   };
 
-  const cartCount = cart.reduce((a, b) => a + b.quantity, 0);
+  const cartCount = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <BrowserRouter>
       <Routes>
-        {/* HOME */}
         <Route
           path="/"
           element={
@@ -72,11 +74,18 @@ function App() {
           }
         />
 
-        {/* CONTACT PAGE */}
+        <Route
+          path="/product/:id"
+          element={
+            <ProductDetailPage
+              addToCart={addToCart}
+            />
+          }
+        />
+
         <Route path="/contact" element={<Contact />} />
       </Routes>
 
-      {/* GLOBAL CART (always visible) */}
       <CartDrawer
         cart={cart}
         cartOpen={cartOpen}
@@ -84,7 +93,8 @@ function App() {
         removeFromCart={removeFromCart}
         updateQuantity={updateQuantity}
       />
-      <WhatsAppButton /> 
+
+      <WhatsAppButton />
     </BrowserRouter>
   );
 }

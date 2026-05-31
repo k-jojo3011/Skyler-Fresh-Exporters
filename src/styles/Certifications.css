@@ -1,0 +1,101 @@
+/* =========================
+   CERTIFICATIONS SECTION
+========================= */
+
+.cert-section {
+  background: #ffffff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.cert-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.cert-eyebrow {
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #111111;
+  font-weight: 1000;
+}
+
+.cert-title {
+  font-size: 40px;
+  margin: 10px 0 30px;
+  color: #111827;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.cert-title span {
+  color: #2563eb;
+  font-style: italic;
+}
+
+.cert-subtitle {
+  max-width: 650px;
+  margin: 0 auto 40px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.cert-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 25px;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   ICON
+========================= */
+
+.cert-icon {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.cert-card h3 {
+  font-size: 18px;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.cert-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+}

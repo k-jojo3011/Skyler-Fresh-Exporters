@@ -6,9 +6,10 @@ import { useCurrency } from "../context/CurrencyContext";
 import Navbar             from "../components/Navbar";
 import HeroSection        from "../components/HeroSection";
 import CategorySection    from "../components/CategorySection";
-import FlowerStory        from "../components/FlowerStory";
+import WhyChooseUs        from "../components/WhyChooseUs";
 import ProductGrid        from "../components/ProductGrid";
 import AboutSection       from "../components/AboutSection";
+import Certifications    from "../components/Certifications";
 import JournalSection     from "../components/JournalSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import NewsletterSection  from "../components/NewsletterSection";
@@ -32,11 +33,10 @@ export default function Home({ addToCart, cartCount, openCart }) {
 
         {/* ✅ addToCart passed straight through — no wrapper needed */}
         <CategorySection addToCart={addToCart} />
-        <FlowerStory />
+        <WhyChooseUs />
         <ProductGrid addToCart={addToCart} />
         <AboutSection />
-        <JournalSection />
-        <TestimonialsSection />
+        <Certifications/>
         <NewsletterSection />
       </main>
 

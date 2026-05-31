@@ -14,9 +14,9 @@ function HeroSection() {
       <div className="heroContent">
 
         {/* SMALL BRAND LINE */}
-        <div className="heroTag">
+         {/*<div className="heroTag">
           KENYA · EST. 2024 · PREMIUM FLORICULTURE
-        </div>
+        </div> */}
 
         {/* MAIN HEADLINE */}
         <h1 className="heroHeadline">

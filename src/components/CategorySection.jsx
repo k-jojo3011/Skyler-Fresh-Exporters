@@ -163,18 +163,23 @@ export default function CategorySection({ addToCart }) {
     if (!scrollRef.current) return;
     scrollRef.current.scrollBy({ left: dir === "right" ? 280 : -280, behavior: "smooth" });
   };
+const handleAdd = (item) => {
+  const category = activeTab === "Flowers"
+    ? "flower"
+    : activeTab === "Herbs"
+    ? "herb"
+    : "vegetable";
 
-  const handleAdd = (item) => {
-    if (addToCart) {
-      addToCart(item); // ✅ sends to global cart
-    }
+  if (addToCart) {
+    addToCart({ ...item, type: category });
+  }
 
-    setCartedIds((prev) => [...prev, item.id]);
+  setCartedIds((prev) => [...prev, item.id]);
 
-    setTimeout(() => {
-      setCartedIds((prev) => prev.filter((id) => id !== item.id));
-    }, 2000);
-  };
+  setTimeout(() => {
+    setCartedIds((prev) => prev.filter((id) => id !== item.id));
+  }, 2000);
+};
 
 
 

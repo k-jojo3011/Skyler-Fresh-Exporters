@@ -1,52 +1,61 @@
-
 import "../styles/HeroSection.css";
-import rose from "../assets/images/BlueRose.jpg";
 
 function HeroSection() {
   return (
     <section className="luxuryHero">
 
-      {/* BACKGROUND IMAGE */}
-      <img
-        src="https://images.unsplash.com/photo-1487530811015-780c9e9b4f0a?q=80&w=2070&auto=format&fit=crop"
-        alt="Beautiful flowers"
-        className="heroBackground"
-      />
+      {/* BACKGROUND */}
+      <div className="heroBackground" />
 
-      {/* SOFT OVERLAY */}
+      {/* DARK OVERLAY */}
       <div className="heroOverlay" />
 
       {/* CONTENT */}
       <div className="heroContent">
 
-        {/* AVATAR + LABEL like reference */}
-        <div className="heroIdentity">
-          <div className="heroAvatar">
-            <img
-              src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=100&auto=format&fit=crop"
-              alt="Skyler Fresh"
-            />
-          </div>
-          <span className="heroLabel">SKYLER FRESH</span>
+        {/* SMALL BRAND LINE */}
+        <div className="heroTag">
+          KENYA · EST. 2024 · PREMIUM FLORICULTURE
         </div>
 
-        {/* HEADLINE */}
+        {/* MAIN HEADLINE */}
         <h1 className="heroHeadline">
-          Fresh Kenyan blooms,<br />delivered worldwide
+       Fresh Flowers, Herbs & Vegetables from Kenya’s Top Growers
         </h1>
 
-        {/* CTA */}
-        <button className="heroMainBtn">Shop our flowers</button>
+        {/* SUPPORT TEXT */}
+        <p className="heroSubtext">
+          Carefully harvested at peak bloom and exported with precision, freshness,
+          and consistency trusted by global buyers.
+        </p>
+
+        {/* BUTTONS */}
+        <div className="heroButtons">
+          <button className="btnPrimary">Shop Now</button>
+          <button className="btnSecondary">View Our Varieties</button>
+        </div>
 
       </div>
 
-      {/* BOTTOM TICKER */}
+      {/* FLOATING TICKER */}
       <div className="heroTicker">
         <div className="heroTickerTrack">
-          {["Farm Fresh", "Export Quality", "Organic", "Same-Day Delivery", "100% Kenyan", "Award Winning",
-            "Farm Fresh", "Export Quality", "Organic", "Same-Day Delivery", "100% Kenyan", "Award Winning"].map((item, i) => (
-              <span key={i} className="heroTickerItem">{item}</span>
-            ))}
+          {[
+            "Farm Fresh",
+            "Export Quality",
+            "Cold Chain Protected",
+            "Direct From Growers",
+            "Kenya Grown",
+            "Premium Grade",
+            "Farm Fresh",
+            "Export Quality",
+            "Cold Chain Protected",
+            "Direct From Growers"
+          ].map((item, i) => (
+            <span key={i} className="heroTickerItem">
+              {item}
+            </span>
+          ))}
         </div>
       </div>
 

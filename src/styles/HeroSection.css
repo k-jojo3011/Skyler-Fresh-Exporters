@@ -116,36 +116,112 @@
 }
 
 /* ── BOTTOM TICKER — scrolling like press logos ── */
+
+.luxuryHero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #05070d, #0a1424);
+  color: white;
+  overflow: hidden;
+}
+
+/* background glow */
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, #0f2a4a 0%, #05070d 60%);
+  opacity: 0.9;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.heroContent {
+  position: relative;
+  text-align: center;
+  max-width: 850px;
+  padding: 20px;
+  z-index: 2;
+}
+
+.heroTag {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #7fa7ff;
+  margin-bottom: 18px;
+}
+
+.heroHeadline {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.heroSubtext {
+  font-size: 1rem;
+  color: #cbd5e1;
+  max-width: 600px;
+  margin: 0 auto 28px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  background: #1f4fff;
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.btnSecondary {
+  background: transparent;
+  color: white;
+  border: 1px solid #3a5bdc;
+  padding: 12px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* ticker */
 .heroTicker {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 20px;
   width: 100%;
-  z-index: 6;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(255,255,255,0.15);
   overflow: hidden;
-  padding: 14px 0;
+  z-index: 2;
 }
 
 .heroTickerTrack {
   display: flex;
-  gap: 0;
-  width: max-content;
-  animation: ticker 22s linear infinite;
+  gap: 40px;
+  white-space: nowrap;
+  animation: scroll 18s linear infinite;
 }
 
 .heroTickerItem {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.85);
-  text-transform: uppercase;
-  padding: 0 40px;
-  white-space: nowrap;
-  border-right: 1px solid rgba(255,255,255,0.2);
+  font-size: 12px;
+  color: #93b7ff;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes ticker {

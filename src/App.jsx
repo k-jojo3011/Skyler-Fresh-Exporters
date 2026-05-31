@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
@@ -49,7 +49,6 @@ function App() {
             };
           }
         }
-
         return item;
       })
     );
@@ -61,7 +60,7 @@ function App() {
   );
 
   return (
-  <BrowserRouter basename="/Skyler-Fresh-Exporters">
+    <>
       <Routes>
         <Route
           path="/"
@@ -76,11 +75,7 @@ function App() {
 
         <Route
           path="/product/:id"
-          element={
-            <ProductDetailPage
-              addToCart={addToCart}
-            />
-          }
+          element={<ProductDetailPage addToCart={addToCart} />}
         />
 
         <Route path="/contact" element={<Contact />} />
@@ -95,7 +90,7 @@ function App() {
       />
 
       <WhatsAppButton />
-    </BrowserRouter>
+    </>
   );
 }
 

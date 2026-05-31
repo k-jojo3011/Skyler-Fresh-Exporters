@@ -40,12 +40,12 @@ const categoryData = {
       id: 4,
       name: "Playa Blanca",
       subtitle: "Spring Collection",
-      price:  1400,
+      price: 1400,
       from: true,
       image: playa,
       swatches: ["#e84393", "#f5a0cc", "#f5e6c8"],
     },
-   {
+    {
       id: 5,
       name: "Alstromeria",
       subtitle: "Bright White Blooms",
@@ -63,7 +63,7 @@ const categoryData = {
       price: 350,
       from: false,
       image: "https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400&q=80",
-     
+
     },
     {
       id: 7,
@@ -72,7 +72,7 @@ const categoryData = {
       price: 280,
       from: true,
       image: "https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?w=400&q=80",
-   
+
     },
     {
       id: 8,
@@ -81,16 +81,16 @@ const categoryData = {
       price: 320,
       from: false,
       image: "https://images.unsplash.com/photo-1515586000433-45406d8e6662?w=400&q=80",
- 
+
     },
     {
       id: 9,
       name: "Thyme Collection",
       subtitle: "Garden Fresh",
-      price:  300,
+      price: 300,
       from: true,
       image: "https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=400&q=80",
-    
+
     },
     {
       id: 10,
@@ -99,7 +99,7 @@ const categoryData = {
       price: 180,
       from: false,
       image: oregano,
-     
+
     },
   ],
   "Vegetables & Fruits": [
@@ -110,7 +110,7 @@ const categoryData = {
       price: 450,
       from: true,
       image: "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&q=80",
-  
+
     },
     {
       id: 12,
@@ -119,7 +119,7 @@ const categoryData = {
       price: 600,
       from: false,
       image: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=400&q=80",
-    
+
     },
     {
       id: 13,
@@ -128,7 +128,7 @@ const categoryData = {
       price: 380,
       from: true,
       image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=400&q=80",
-    
+
     },
     {
       id: 14,
@@ -137,7 +137,7 @@ const categoryData = {
       price: 420,
       from: false,
       image: "https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&q=80",
-   
+
     },
     {
       id: 15,
@@ -146,7 +146,7 @@ const categoryData = {
       price: 250,
       from: true,
       image: "https://images.unsplash.com/photo-1604495772376-9657f0033fa8?w=400&q=80",
-   
+
     },
   ],
 };
@@ -453,16 +453,18 @@ export default function CategorySection({ addToCart }) {
                       {item.from && <span className="cs-from">From</span>}
                       <span className="cs-price">{formatPrice(item.price)}</span>
                     </div>
-                    <div className="cs-swatches">
-                      {item.swatches.map((color, i) => (
-                        <span
-                          key={i}
-                          className="cs-swatch"
-                          style={{ background: color }}
-                          title={color}
-                        />
-                      ))}
-                    </div>
+                    {item.swatches && item.swatches.length > 0 && (
+                      <div className="cs-swatches">
+                        {item.swatches.map((color, i) => (
+                          <span
+                            key={i}
+                            className="cs-swatch"
+                            style={{ background: color }}
+                            title={color}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               );

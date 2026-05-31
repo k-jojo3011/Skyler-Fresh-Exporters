@@ -61,7 +61,7 @@ function App() {
   );
 
   return (
-    <BrowserRouter>
+  <BrowserRouter basename="/Skyler-Fresh-Exporters">
       <Routes>
         <Route
           path="/"

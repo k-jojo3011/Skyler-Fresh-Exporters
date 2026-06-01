@@ -15,15 +15,6 @@
 }
 
 /* ── BACKGROUND DECORATIONS ── */
-.heritage-bg-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(26,106,191,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26,106,191,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
 .heritage-bg-glow1 {
   position: absolute;
   top: -120px;

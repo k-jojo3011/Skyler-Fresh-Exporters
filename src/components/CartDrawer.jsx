@@ -1,22 +1,24 @@
-// src/components/CartDrawer.jsx
+import { useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
 import "../styles/CartDrawer.css";
 
+
 const suggestedProducts = [
-  { id: 101, name: "Red Rose Bouquet",   price: 650,  emoji: "🌹", type: "flower" },
-  { id: 102, name: "Kenyan Protea",      price: 1200, emoji: "🌺", type: "flower" },
-  { id: 103, name: "Fresh Basil",        price: 250,  emoji: "🌿", type: "herb"   },
-  { id: 104, name: "Dhania (Coriander)", price: 120,  emoji: "🍃", type: "herb"   },
+  { id: 101, name: "Red Rose Bouquet", price: 650, emoji: "🌹", type: "flower" },
+  { id: 102, name: "Kenyan Protea", price: 1200, emoji: "🌺", type: "flower" },
+  { id: 103, name: "Fresh Basil", price: 250, emoji: "🌿", type: "herb" },
+  { id: 104, name: "Dhania (Coriander)", price: 120, emoji: "🍃", type: "herb" },
 ];
 
 // ─────────────────────────────────────────────────────
 // FLOWER item row  →  stem length · colour · grade · box info
 // ─────────────────────────────────────────────────────
 function FlowerCartItem({ item, updateQuantity, removeFromCart, formatPrice }) {
-  const packrate  = item.packrate || 250;
-  const stems     = item.quantity;
-  const boxes     = stems / packrate;
+  const packrate = item.packrate || 250;
+  const stems = item.quantity;
+  const boxes = stems / packrate;
   const isFullBox = stems % packrate === 0;
+
 
   return (
     <div className="cart-item-row">
@@ -30,8 +32,8 @@ function FlowerCartItem({ item, updateQuantity, removeFromCart, formatPrice }) {
 
         {/* Stem detail badges */}
         <div className="cart-badges">
-          {item.variant    && <span className="cart-badge cart-badge--blue">📏 {item.variant}</span>}
-          {item.color      && <span className="cart-badge cart-badge--blue">🎨 {item.color}</span>}
+          {item.variant && <span className="cart-badge cart-badge--blue">📏 {item.variant}</span>}
+          {item.color && <span className="cart-badge cart-badge--blue">🎨 {item.color}</span>}
           {item.characteristic && <span className="cart-badge cart-badge--blue">✂️ {item.characteristic}</span>}
         </div>
 
@@ -69,8 +71,8 @@ function FlowerCartItem({ item, updateQuantity, removeFromCart, formatPrice }) {
 // HERB item row  →  pack size (50g / 100g) · condition · grams total
 // ─────────────────────────────────────────────────────
 function HerbCartItem({ item, updateQuantity, removeFromCart, formatPrice }) {
-  const packs      = item.quantity;
-  const grams      = item.packGrams || 50;
+  const packs = item.quantity;
+  const grams = item.packGrams || 50;
   const totalGrams = packs * grams;
 
   return (
@@ -85,7 +87,7 @@ function HerbCartItem({ item, updateQuantity, removeFromCart, formatPrice }) {
 
         {/* Herb detail badges */}
         <div className="cart-badges">
-          {item.variant   && <span className="cart-badge cart-badge--green">⚖️ {item.variant}</span>}
+          {item.variant && <span className="cart-badge cart-badge--green">⚖️ {item.variant}</span>}
           {item.condition && <span className="cart-badge cart-badge--green">🌱 {item.condition}</span>}
           {item.shelfLife && <span className="cart-badge cart-badge--green">🗓 {item.shelfLife}</span>}
         </div>
@@ -120,10 +122,14 @@ function HerbCartItem({ item, updateQuantity, removeFromCart, formatPrice }) {
 // MAIN CART DRAWER
 // ─────────────────────────────────────────────────────
 function CartDrawer({ cart, cartOpen, setCartOpen, removeFromCart, updateQuantity, addToCart }) {
+   const navigate = useNavigate();
   // ✅ Currency context — ALL price display goes through formatPrice
-  const { formatPrice, activeCurrency } = useCurrency();
 
-  const total     = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const { formatPrice, activeCurrency } = useCurrency();
+ 
+
+
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   // Footer summary totals
@@ -137,7 +143,7 @@ function CartDrawer({ cart, cartOpen, setCartOpen, removeFromCart, updateQuantit
     .filter(i => i.type === "flower")
     .reduce((s, i) => s + i.quantity / (i.packrate || 250), 0);
 
-  const cartIds   = cart.map(i => i.id);
+  const cartIds = cart.map(i => i.id);
   const suggested = suggestedProducts.filter(p => !cartIds.includes(p.id));
 
   if (!cartOpen) return null;
@@ -182,9 +188,9 @@ function CartDrawer({ cart, cartOpen, setCartOpen, removeFromCart, updateQuantit
           <div className="cart-header">
             <div className="cart-header-left">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <path d="M16 10a4 4 0 0 1-8 0"/>
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 0 1-8 0" />
               </svg>
               <span className="cart-count-label">
                 {itemCount} {itemCount === 1 ? "item" : "items"}
@@ -275,18 +281,23 @@ function CartDrawer({ cart, cartOpen, setCartOpen, removeFromCart, updateQuantit
               </div>
 
               {/* ✅ Checkout total — currency-aware, shows active currency code */}
-              <button className="cart-checkout-btn">
+              <button
+                className="cart-checkout-btn"
+                onClick={() => {
+                  setCartOpen(false);   // close drawer
+                  navigate("/checkout"); // go to checkout page
+                }}
+              >
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                  <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                  <line x1="3" y1="6" x2="21" y2="6"/>
-                  <path d="M16 10a4 4 0 0 1-8 0"/>
+                  <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <path d="M16 10a4 4 0 0 1-8 0" />
                 </svg>
+
                 <span>CHECKOUT</span>
                 <span className="checkout-divider">•</span>
-                {/* ✅ formatPrice converts total to selected currency */}
                 <span>{formatPrice(total)}</span>
               </button>
-
             </div>
           )}
 

@@ -5,10 +5,11 @@
 import { useCurrency } from "../context/CurrencyContext";
 import Navbar             from "../components/Navbar";
 import HeroSection        from "../components/HeroSection";
-import CategorySection    from "../components/CategorySection";
+import CategorySection    from "../components/CategorySection"
+import SignatureBlooms    from "../components/SignatureBlooms"
 import WhyChooseUs        from "../components/WhyChooseUs";
 import ProductGrid        from "../components/ProductGrid";
-import AboutSection       from "../components/AboutSection";
+import HeritageSection       from "../components/HeritageSection";
 import Certifications    from "../components/Certifications";
 import JournalSection     from "../components/JournalSection";
 import TestimonialsSection from "../components/TestimonialsSection";
@@ -32,10 +33,12 @@ export default function Home({ addToCart, cartCount, openCart }) {
         <HeroSection />
 
         {/* ✅ addToCart passed straight through — no wrapper needed */}
-        <CategorySection addToCart={addToCart} />
+   
+        <SignatureBlooms addToCart={addToCart} />
         <WhyChooseUs />
+        <CategorySection addToCart={addToCart} />
+        <HeritageSection />
         <ProductGrid addToCart={addToCart} />
-        <AboutSection />
         <Certifications/>
         <NewsletterSection />
       </main>

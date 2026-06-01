@@ -10,7 +10,7 @@
 body {
   font-family: system-ui, "Segoe UI", Roboto, sans-serif;
   background: #ffffff;
-  color: #111827;
+  color: #000000;
   overflow-x: hidden;
 }
 
@@ -24,7 +24,7 @@ a {
 .page-layout {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 50px;
 }
 
 /* Images */
@@ -38,20 +38,17 @@ img {
 ================================ */
 :root {
   /* Core */
-  --bg: #ffffff;
-  --text: #111827;
-  --text-light: #6b7280;
-  --heading: #0f172a;
+  --bg: #0c0c0c;
+  --text: #bdb9b9;
+  --heading: #000000;
 
   /* Accent (blue system) */
   --accent: #2563eb;
   --accent-light: rgba(37, 99, 235, 0.1);
-  --accent-border: rgba(37, 99, 235, 0.35);
 
   /* UI */
-  --border: #e5e7eb;
-  --card-bg: #f9fafb;
-  --shadow: rgba(0, 0, 0, 0.08) 0px 10px 25px;
+  --border: #000000;
+  --card-bg: #faf8f8;
 
   /* Fonts */
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
@@ -84,7 +81,7 @@ h1,
 h2,
 h3 {
   font-family: var(--sans);
-  color: var(--heading);
+  color: #000000;
   font-weight: 600;
 }
 
@@ -106,7 +103,7 @@ h3 {
 
 p {
   margin: 0;
-  color: var(--text-light);
+  color: #000000;
   line-height: 1.6;
 }
 
@@ -133,17 +130,18 @@ code,
   font-family: ui-monospace, Consolas, monospace;
   display: inline-flex;
   border-radius: 6px;
-  color: var(--heading);
+  color: #000000;
 }
 
 code {
   font-size: 14px;
   padding: 4px 8px;
-  background: #f3f4f6;
+  background: #080808;
+  border: 1px solid #000000;
 }
 
 /* ===============================
-   BUTTONS (GLOBAL STYLE)
+   BUTTONS
 ================================ */
 button {
   cursor: pointer;
@@ -169,25 +167,25 @@ button:hover {
 }
 
 /* ===============================
-   CARDS DEFAULT STYLE
+   CARDS
 ================================ */
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
+  background: #ffffff;
+  border: 1px solid #000000;
   border-radius: 14px;
   padding: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 /* ===============================
-   ACCENT HELPERS
+   ACCENT
 ================================ */
 .accent {
   color: var(--accent);
 }
 
 .accent-bg {
-  background: var(--accent-light);
+  background: rgba(37, 99, 235, 0.1);
 }
 
 /* ===============================

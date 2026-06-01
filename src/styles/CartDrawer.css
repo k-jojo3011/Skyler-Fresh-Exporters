@@ -546,6 +546,12 @@
   border-bottom: 1px solid #f0f5ff;
   margin-bottom: 2px;
 }
+.cart-checkout-btn {
+  pointer-events: auto;
+  cursor: pointer;
+  position: relative;
+  z-index: 999;
+}
 
 /* ── FARM / ORIGIN LINE ── */
 .cart-item-farm {

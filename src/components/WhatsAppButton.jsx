@@ -1,7 +1,7 @@
 import "../styles/WhatsAppButton.css";
 
 export default function WhatsAppButton() {
-  const phoneNumber = "254721427329"; // replace with your number (no +)
+  const phoneNumber = "254719166196"; // replace with your number (no +)
 
   const message = "Hello Skyler Fresh, I would like to place an order.";
 

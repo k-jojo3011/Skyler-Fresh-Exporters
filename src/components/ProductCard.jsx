@@ -4,6 +4,7 @@ import { useCart }     from "../context/CartContext";
 import { useCurrency } from "../context/CurrencyContext";
 import "../styles/ProductCard.css";
 
+
 export default function ProductCard({ product }) {
   const { addToCart }   = useCart();
   const { formatPrice } = useCurrency();

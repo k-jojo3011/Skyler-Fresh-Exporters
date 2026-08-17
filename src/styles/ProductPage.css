@@ -1,0 +1,409 @@
+/* ============================================================
+   SkylerFresh — ProductPage.css (full file, replaces the old one)
+   Plain grey title banner + breadcrumb (matches the reference
+   exactly), sidebar filters, toolbar, small square-ish thumbnails,
+   no pricing, no enquiry CTA on the card. Built on your existing
+   tokens: --sf-gutter, --sf-white, --sf-ink, --sf-sky, --sf-blue,
+   --sf-paper, --sf-line, --sf-radius, --sf-mono, --sf-body.
+   ============================================================ */
+
+.sf-shop {
+  padding: 0 0 96px;
+  background: var(--sf-paper);
+}
+
+/* ---------- Banner ---------- */
+
+.sf-shop-banner {
+  background: #EFEFF1;
+  padding: 44px var(--sf-gutter);
+  border-bottom: 1px solid var(--sf-line);
+}
+
+.sf-shop-banner-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sf-shop-banner-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--sf-ink);
+  margin: 0 0 10px;
+}
+
+.sf-shop-breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sf-body);
+  font-size: 13px;
+  color: var(--sf-sky);
+}
+.sf-shop-breadcrumb a {
+  color: var(--sf-sky);
+  text-decoration: none;
+}
+.sf-shop-breadcrumb a:hover { color: var(--sf-ink); }
+.sf-shop-breadcrumb span:last-child { color: var(--sf-ink); }
+
+/* ---------- Shop layout: sidebar + main ---------- */
+
+.sf-shop-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: start;
+  max-width: 1320px;
+  margin: 32px auto 0;
+  padding: 0 var(--sf-gutter);
+}
+
+@media (max-width: 860px) {
+  .sf-shop-layout { grid-template-columns: 1fr; }
+}
+
+/* ---------- Sidebar ---------- */
+
+.sf-shop-sidebar {
+  border: 1px solid var(--sf-line);
+  background: var(--sf-white);
+}
+
+.sf-filter-section { border-bottom: 1px solid var(--sf-line); }
+.sf-filter-section:last-child { border-bottom: none; }
+
+.sf-filter-section-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 16px 18px;
+  font-family: var(--sf-body);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--sf-ink);
+}
+
+.sf-filter-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sf-filter-dot {
+  width: 10px;
+  height: 2px;
+  background: var(--sf-blue);
+  display: inline-block;
+  transform: rotate(-45deg);
+}
+
+.sf-filter-toggle {
+  color: var(--sf-sky);
+  font-size: 15px;
+  line-height: 1;
+}
+
+.sf-filter-section-body { padding: 0 18px 16px; }
+
+.sf-filter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sf-filter-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--sf-body);
+  font-size: 13px;
+  color: #4a5a6e;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+.sf-filter-check:hover { color: var(--sf-ink); }
+.sf-filter-check.is-checked { color: var(--sf-ink); font-weight: 600; }
+
+.sf-filter-box {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--sf-line);
+  border-radius: 3px;
+  flex-shrink: 0;
+  position: relative;
+}
+.sf-filter-check.is-checked .sf-filter-box {
+  background: var(--sf-blue);
+  border-color: var(--sf-blue);
+}
+.sf-filter-check.is-checked .sf-filter-box::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--sf-white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.sf-filter-count {
+  margin-left: auto;
+  font-family: var(--sf-mono);
+  font-size: 11px;
+  color: var(--sf-sky);
+}
+
+.sf-filter-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- Main column: toolbar ---------- */
+
+.sf-shop-main { min-width: 0; }
+
+.sf-shop-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--sf-line);
+}
+
+.sf-view-toggle { display: flex; gap: 6px; }
+
+.sf-view-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--sf-line);
+  background: var(--sf-white);
+  border-radius: var(--sf-radius);
+  cursor: pointer;
+  color: var(--sf-sky);
+  font-size: 14px;
+}
+.sf-view-btn.is-active {
+  background: var(--sf-ink);
+  border-color: var(--sf-ink);
+  color: var(--sf-white);
+}
+
+.sf-sort-select {
+  font-family: var(--sf-mono);
+  font-size: 12px;
+  border: 1px solid var(--sf-line);
+  border-radius: var(--sf-radius);
+  padding: 8px 10px;
+  background: var(--sf-white);
+  color: var(--sf-ink);
+}
+
+.sf-shop-toolbar .sf-shop-count {
+  margin-left: auto;
+  font-family: var(--sf-mono);
+  font-size: 12px;
+  color: var(--sf-sky);
+}
+
+.sf-shop-empty {
+  grid-column: 1 / -1;
+  padding: 40px;
+  text-align: center;
+  color: var(--sf-sky);
+  font-family: var(--sf-mono);
+  font-size: 13px;
+}
+
+/* ---------- Lot grid + card ---------- */
+
+.sf-lot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 200px));
+  gap: 16px;
+}
+
+.sf-lot {
+  background: var(--sf-white);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--sf-line);
+}
+
+.sf-lot-photo {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--sf-paper);
+}
+.sf-lot-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.sf-lot:hover .sf-lot-photo img { transform: scale(1.04); }
+
+.sf-lot-photo-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--sf-mono);
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sf-ink);
+  background: rgba(153, 160, 243, 0.88);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+.sf-lot-body {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sf-lot-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
+  margin-bottom: 10px;
+}
+
+.sf-lot-collection {
+  font-family: var(--sf-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sf-ink);
+  background: rgba(153, 160, 243, 0.5);
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+
+.sf-lot-name {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.sf-lot-note {
+  font-size: 12.5px;
+  color: #4a5a6e;
+  margin: 0 0 12px;
+}
+
+.sf-lot-spec { margin-bottom: 14px; }
+
+.sf-spec-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.sf-spec-btn {
+  font-family: var(--sf-mono);
+  font-size: 11px;
+  background: var(--sf-paper);
+  border: 1px solid var(--sf-line);
+  border-radius: var(--sf-radius);
+  padding: 5px 9px;
+  cursor: pointer;
+  color: var(--sf-ink);
+}
+.sf-spec-btn.is-active {
+  background: var(--sf-blue);
+  border-color: var(--sf-blue);
+  color: var(--sf-white);
+}
+
+/* ---------- Colour swatches ---------- */
+
+.sf-lot-colors { margin-bottom: 4px; }
+
+.sf-color-options {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.sf-color-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--sf-line);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.sf-color-swatch:hover { transform: scale(1.08); }
+.sf-color-swatch.is-active {
+  box-shadow: 0 0 0 2px var(--sf-white), 0 0 0 4px var(--sf-blue);
+}
+
+.sf-color-swatch-check {
+  color: var(--sf-white);
+  font-size: 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+}
+.sf-color-swatch.is-active .sf-color-swatch-check { opacity: 1; }
+
+.sf-color-swatch[style*="255, 255, 255"] .sf-color-swatch-check,
+.sf-color-swatch[style*="#FFFFFF"] .sf-color-swatch-check {
+  color: var(--sf-ink);
+  text-shadow: none;
+}
+
+/* ---------- List view ---------- */
+
+.sf-lot-grid--list {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.sf-lot-grid--list .sf-lot { flex-direction: row; }
+.sf-lot-grid--list .sf-lot-photo {
+  width: 180px;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+}
+.sf-lot-grid--list .sf-lot-body { flex: 1; }
+
+@media (max-width: 640px) {
+  .sf-lot-grid--list .sf-lot { flex-direction: column; }
+  .sf-lot-grid--list .sf-lot-photo { width: 100%; }
+}
+
+/* ---------- Lead magnet spacing ---------- */
+
+.sf-shop-leadmagnet {
+  max-width: 1320px;
+  margin: 40px auto 0;
+  padding: 0 var(--sf-gutter);
+}

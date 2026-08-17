@@ -1,106 +1,80 @@
 // src/components/WhyChooseUs.jsx
-import { useState } from "react";
-import aboutImg from "../assets/images/flowers.jpeg";
 import "../styles/WhyChooseUs.css";
 
-export default function WhyChooseUs() {
-    const [activeTab, setActiveTab] = useState("Freshness");
+const FEATURES = [
+    {
+        icon: "🌿",
+        title: "Direct From Named Farms",
+        body: "Every lot lists exactly which partner farm it came from no blind sourcing.",
+    },
+    {
+        icon: "⏱️",
+        title: "We Answer Fast",
+        body: "Quote requests go to the export desk, not a queue confirmed within one business day.",
+    },
+    {
+        icon: "❄️",
+        title: "Cold Chain We Own",
+        body: "Pre-cooling and grading happen on our schedule the two hours after cutting decide quality.",
+    },
+    {
+        icon: "📋",
+        title: "Graded to Spec",
+        body: "Stem length and weight confirmed against your order before it ships, not discovered on arrival.",
+    },
+];
 
+export default function WhyChooseUs() {
     return (
         <section className="wcu">
+            <div className="wcu-inner">
 
-            {/* ── Hero split ── */}
-            <div className="wcu-hero">
-                <div className="wcu-img-wrap">
-                    <img src={aboutImg} alt="Fresh flowers farm Kenya" />
-
-                    <div className="wcu-img-accent" />
-                </div>
-
-                <div className="wcu-hero-right">
-                    <p className="wcu-eyebrow">This business was built</p>
+                {/* ── Left: eyebrow, heading, copy, CTA ── */}
+                <div className="wcu-left">
+                    <p className="wcu-eyebrow">
+                        Features
+                        <span className="wcu-eyebrow-line" />
+                    </p>
                     <h2 className="wcu-title">
-                        Why<em>Choose Us</em>
+                        Why Buyers <em>Choose Skyler Fresh</em>
                     </h2>
                     <p className="wcu-body">
-                        The beauty of Kenya's highlands and the dedication of our growers
-                        make us who we are. This powerful connection with the land means we
-                        deliver freshness, reliability, and care from farm to your doorstep.
+                        Late deliveries and inconsistent stem counts are the norm buyers
+                        put up with from Kenya. We work direct with named growers, run
+                        our own cold chain, and confirm every order within one business
+                        day built for buyers who need to plan a season, not gamble on
+                        one order.
                     </p>
-                    <div className="wcu-tabs">
-                        {["Freshness", "Quality"].map((tab) => (
-                            <div
-                                key={tab}
-                                className={`wcu-tab${activeTab === tab ? " active" : ""}`}
-                                onClick={() => setActiveTab(tab)}
-                            >
-                                {tab}
+                    <a href="/product" className="wcu-cta">See Current Availability</a>
+                </div>
+
+                {/* ── Right: two-column feature list ── */}
+                <div className="wcu-features">
+                    <div className="wcu-features-col">
+                        {FEATURES.slice(0, 2).map((f) => (
+                            <div className="wcu-feature-item" key={f.title}>
+                                <div className="wcu-feature-icon">{f.icon}</div>
+                                <div className="wcu-feature-text">
+                                    <h4>{f.title}</h4>
+                                    <p>{f.body}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="wcu-features-col">
+                        {FEATURES.slice(2, 4).map((f) => (
+                            <div className="wcu-feature-item" key={f.title}>
+                                <div className="wcu-feature-icon">{f.icon}</div>
+                                <div className="wcu-feature-text">
+                                    <h4>{f.title}</h4>
+                                    <p>{f.body}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
                 </div>
+
             </div>
-
-            {/* ── Cards ── */}
-            <div className="wcu-grid">
-                <div className="wcu-card">
-                    <div className="wcu-num">01</div>
-                    <div className="wcu-icon">🌿</div>
-                    <h3>Direct from <em>Farms</em></h3>
-                    <p>Harvested fresh from Kenya's finest highland growers for maximum bloom life and fragrance.</p>
-                </div>
-                <div className="wcu-card">
-                    <div className="wcu-num">02</div>
-                    <div className="wcu-icon">✈️</div>
-                    <h3><em>Global</em> Export</h3>
-                    <p>We deliver fresh flowers, herbs, and vegetables to international markets with reliable logistics.</p>
-                </div>
-                <div className="wcu-card">
-                    <div className="wcu-num">03</div>
-                    <div className="wcu-icon">❄️</div>
-                    <h3>Cold Chain <em>Freshness</em></h3>
-                    <p>Temperature-controlled handling ensures every product arrives farm-perfect, every time.</p>
-                </div>
-            </div>
-
-            <div className="wcu-bottom-row">
-                <div className="wcu-card">
-                    <div className="wcu-num">04</div>
-                    <div className="wcu-icon">🌸</div>
-                    <h3><em>Premium</em> Quality</h3>
-                    <p>Carefully selected produce meeting strict export standards and grading consistency.</p>
-                </div>
-                <div className="wcu-card">
-                    <div className="wcu-num">05</div>
-                    <div className="wcu-icon">🌎</div>
-                    <h3>Worldwide <em>Reach</em></h3>
-                    <p>Serving wholesalers, florists, and retailers across Europe, Middle East, and beyond.</p>
-                </div>
-            </div>
-
-            {/* ── Stats strip ── */}
-            {/* <div className="wcu-strip">
-                <div className="wcu-stat">
-                    <div className="wcu-stat-val">100<span>%</span></div>
-                    <div className="wcu-stat-lbl">Farm Fresh</div>
-                </div>
-                <div className="wcu-sdiv" />
-                <div className="wcu-stat">
-                    <div className="wcu-stat-val">48<span>h</span></div>
-                    <div className="wcu-stat-lbl">Farm to Flight</div>
-                </div>
-                <div className="wcu-sdiv" />
-                <div className="wcu-stat">
-                    <div className="wcu-stat-val">30<span>+</span></div>
-                    <div className="wcu-stat-lbl">Countries Served</div>
-                </div>
-                <div className="wcu-sdiv" />
-                <div className="wcu-stat">
-                    <div className="wcu-stat-val"><span>∞</span></div>
-                    <div className="wcu-stat-lbl">Quality Promise</div>
-                </div>
-            </div>*/}
-
         </section>
     );
 }

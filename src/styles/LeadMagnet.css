@@ -1,0 +1,62 @@
+.sf-leadmagnet {
+  background: var(--sf-white);
+  border: 1px solid var(--sf-line);
+  border-radius: var(--sf-radius);
+  padding: 32px var(--sf-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.sf-leadmagnet-text { max-width: 440px; }
+.sf-leadmagnet-title {
+  font-size: 22px;
+  margin: 8px 0 6px;
+}
+.sf-leadmagnet-body {
+  font-size: 14px;
+  color: #4a5a6e;
+  margin: 0;
+}
+
+.sf-leadmagnet-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sf-leadmagnet-form input {
+  font-family: var(--sf-body);
+  font-size: 14px;
+  border: 1px solid var(--sf-line);
+  border-radius: var(--sf-radius);
+  padding: 12px 14px;
+  min-width: 220px;
+  background: var(--sf-paper);
+}
+.sf-leadmagnet-form input:focus {
+  outline: 2px solid var(--sf-blue);
+  outline-offset: 1px;
+}
+
+.sf-leadmagnet-form button {
+  font-family: var(--sf-body);
+  font-weight: 600;
+  font-size: 14px;
+  background: var(--sf-ink);
+  color: var(--sf-white);
+  border: none;
+  border-radius: var(--sf-radius);
+  padding: 12px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sf-leadmagnet-form button:hover { background: var(--sf-blue); }
+
+.sf-leadmagnet-confirm {
+  font-family: var(--sf-mono);
+  font-size: 13px;
+  color: var(--sf-blue);
+}

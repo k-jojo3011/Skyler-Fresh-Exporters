@@ -8,12 +8,6 @@ function Navbar({ cartCount, openCart }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currencyOpen, setCurrencyOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const handleNavClick = (id) => {
-    setMenuOpen(false);
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 50);
-  };
 
   const { currencyCode, setCurrencyCode, currencies } = useCurrency();
 
@@ -50,22 +44,24 @@ function Navbar({ cartCount, openCart }) {
         </button>
 
         {/* LOGO */}
-        <div className="navLogo">SKYLER <span>FRESH</span></div>
+        <Link to="/" className="navLogo" onClick={() => setMenuOpen(false)}>
+          SKYLER <span>FRESH</span>
+        </Link>
 
         {/* CENTER LINKS */}
         <nav className={`navCenter ${menuOpen ? "navCenter--open" : ""}`}>
-          <a href="#home" onClick={() => handleNavClick("home")}>Home</a>
-          <a href="#shop" onClick={() => handleNavClick("shop")}>Products</a>
-          <a href="#about" onClick={() => handleNavClick("about")}>About Us</a>
-          <a href="#journal" onClick={() => handleNavClick("journal")}>Blog</a>
-          <a href="#faq" onClick={() => handleNavClick("faq")}>FAQ</a>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/productpage" onClick={() => setMenuOpen(false)}>Products</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link>
+          <Link to="/journal" onClick={() => setMenuOpen(false)}>Blog</Link>
+          <Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
           <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
         </nav>
 
         {/* RIGHT ICONS */}
         <div className="navRight">
 
-          {/* ── CURRENCY DROPDOWN ── */}
+          {/* ── CURRENCY DROPDOWN ── 
           <div className="currencyWrap" ref={dropdownRef}>
             <button
               className={`navIconBtn navCurrency ${currencyOpen ? "navCurrency--open" : ""}`}
@@ -73,7 +69,7 @@ function Navbar({ cartCount, openCart }) {
               aria-label="Select currency"
               aria-expanded={currencyOpen}
             >
-              {/* Globe icon */}
+
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="2" y1="12" x2="22" y2="12" />
@@ -82,7 +78,7 @@ function Navbar({ cartCount, openCart }) {
 
               <span className="currencyCode">{active.code}</span>
 
-              {/* Chevron */}
+
               <svg
                 className={`chevron ${currencyOpen ? "chevron--up" : ""}`}
                 width="10" height="10" viewBox="0 0 24 24"
@@ -92,7 +88,7 @@ function Navbar({ cartCount, openCart }) {
               </svg>
             </button>
 
-            {/* Dropdown */}
+      
             {currencyOpen && (
               <div className="currencyDropdown">
                 {currencies.map(cur => (
@@ -115,7 +111,7 @@ function Navbar({ cartCount, openCart }) {
                 ))}
               </div>
             )}
-          </div>
+          </div> 
 
           <div className="navDivider" />
 
@@ -127,7 +123,7 @@ function Navbar({ cartCount, openCart }) {
             </svg>
           </button>
 
-          {/* Account */}
+          {/* Account 
           <button className="navIconBtn" aria-label="Account">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -135,7 +131,7 @@ function Navbar({ cartCount, openCart }) {
             </svg>
           </button>
 
-          {/* Cart */}
+          {/* Cart 
           <button className="navIconBtn navCartBtn" aria-label="Cart" onClick={openCart}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
@@ -143,7 +139,7 @@ function Navbar({ cartCount, openCart }) {
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
             {cartCount > 0 && <span className="cartBadge">{cartCount}</span>}
-          </button>
+          </button>*/}
 
         </div>
       </header>

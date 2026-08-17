@@ -1,0 +1,85 @@
+.fh-section {
+  background: #f6f6f7;
+  padding: 72px var(--sf-gutter);
+}
+
+.fh-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 44px;
+}
+
+.fh-title-badge {
+  display: inline-block;
+  background: var(--sf-blue);
+  color: #0a0a0a;
+  font-family: var(--sf-display);
+  font-size: clamp(24px, 3.4vw, 34px);
+  padding: 10px 26px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.fh-sub {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(14, 13, 13, 0.55);
+  margin: 0;
+}
+
+.fh-list {
+  max-width: 700px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.fh-item {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.fh-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.fh-q-text {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: #030303;
+}
+
+.fh-icon {
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--sf-sky);
+  transition: color 0.15s ease;
+}
+.fh-item.is-open .fh-icon { color: var(--sf-blue); }
+
+.fh-a {
+  margin: 0 0 22px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(15, 15, 15, 0.55);
+  max-width: 60ch;
+}
+
+.fh-view-all {
+  display: block;
+  text-align: center;
+  margin: 28px auto 0;
+  font-family: var(--sf-mono);
+  font-size: 13px;
+  color: var(--sf-sky);
+  width: fit-content;
+}
+.fh-view-all:hover { color: #0d0d0d; }

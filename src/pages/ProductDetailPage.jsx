@@ -3,8 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
 import { products } from "../data/products";
 
-
-
 // ─── SAMPLE DATA ─────────────────────────────────────────────────
 // Replace with real data from your API / products.js
 const SAMPLE_FLOWER = {
@@ -67,9 +65,16 @@ const SAMPLE_HERB = {
 };
 
 // ─── COMPONENT ───────────────────────────────────────────────────
-export default function ProductDetailPage({ product, addToCart }) {
+export default function ProductDetailPage({ product: productProp, addToCart }) {
   const navigate = useNavigate();
+  const { id, type } = useParams();
   const { formatPrice } = useCurrency();
+
+  // Resolve the product to show: prop wins, then a route lookup by id,
+  // then a sample so the page never renders blank during dev.
+  const productFromRoute = products?.find(p => String(p.id) === String(id));
+  const product =
+    productProp || productFromRoute || (type === "herb" ? SAMPLE_HERB : SAMPLE_FLOWER);
 
   const isHerb = product?.type === "herb";
 
@@ -79,6 +84,9 @@ export default function ProductDetailPage({ product, addToCart }) {
   const relatedProducts = product?.relatedProducts ?? [];
 
   const [activeImg, setActiveImg] = useState(0);
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedPack, setSelectedPack] = useState(null);
+  const [qty, setQty] = useState(0);
   const [toast, setToast] = useState({ show: false, msg: "" });
   const [openAccordion, setOpenAccordion] = useState("description");
 
@@ -88,7 +96,7 @@ export default function ProductDetailPage({ product, addToCart }) {
   };
 
   if (!product) {
-    return <div style={{ padding: 40 }}>No product selected</div>; 
+    return <div style={{ padding: 40 }}>No product selected</div>;
   }
 
   // When variant changes for flowers, reset qty to that variant's packrate
@@ -97,9 +105,10 @@ export default function ProductDetailPage({ product, addToCart }) {
     setQty(v.packrate);
   }
 
-  // When pack changes for herbs, keep qty
+  // When pack changes for herbs, keep qty (default to min order on first pick)
   function handlePackSelect(p) {
     setSelectedPack(p);
+    setQty(q => (q > 0 ? q : product.minOrderPacks || 1));
   }
 
   // Qty stepper
@@ -159,10 +168,10 @@ export default function ProductDetailPage({ product, addToCart }) {
       {/* ══════════════════════════════════════════
           MAIN GRID: image left, info right
       ══════════════════════════════════════════ */}
-      <div style={s.mainGrid}>
+      <div style={s.mainGrid} className="pdp-main-grid">
 
         {/* ─── LEFT: IMAGE GALLERY ─── */}
-        <div style={s.galleryCol}>
+        <div style={s.galleryCol} className="pdp-gallery-col">
 
           {/* Thumbnail strip */}
           <div style={s.thumbStrip}>
@@ -186,8 +195,8 @@ export default function ProductDetailPage({ product, addToCart }) {
 
           {/* Main image */}
           <div style={s.mainImg}>
-            {product.images?.[activeImg]
-              ? <img src={product.images[activeImg]} alt={product.name} style={s.mainImgEl} />
+            {images[activeImg]
+              ? <img src={images[activeImg]} alt={product.name} style={s.mainImgEl} />
               : <span style={s.mainEmoji}>{product.emojis?.[activeImg] || "🌿"}</span>
             }
             {product.badge && (
@@ -198,7 +207,7 @@ export default function ProductDetailPage({ product, addToCart }) {
         </div>
 
         {/* ─── RIGHT: PRODUCT INFO (sticky) ─── */}
-        <div style={s.infoCol}>
+        <div style={s.infoCol} className="pdp-info-col">
           <div style={s.stickyWrap}>
 
             {/* Breadcrumb */}
@@ -239,7 +248,7 @@ export default function ProductDetailPage({ product, addToCart }) {
                     </span>
                   )}
                 </p>
-                <div style={s.variantGrid}>
+                <div style={s.variantGrid} className="pdp-variant-grid">
                   {variants.map(v => (
                     <button
                       key={v.label}
@@ -438,7 +447,9 @@ export default function ProductDetailPage({ product, addToCart }) {
               </div>
               <p style={s.relatedName}>{p.name}</p>
               <p style={s.relatedPrice}>{formatPrice(p.priceUSD)} / {p.type === "herb" ? "50g" : "stem"}</p>
-              <button style={s.relatedBtn}>View product</button>
+              <button style={s.relatedBtn} onClick={() => navigate(`/shop/${p.id}`)}>
+                View product
+              </button>
             </div>
           ))}
         </div>

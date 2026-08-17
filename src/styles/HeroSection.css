@@ -115,6 +115,16 @@
   transform: scale(1.03);
 }
 
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+
 /* ── BOTTOM TICKER — scrolling like press logos ── */
 
 .luxuryHero {

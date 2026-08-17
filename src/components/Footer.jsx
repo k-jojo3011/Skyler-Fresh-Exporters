@@ -112,7 +112,7 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Contact Us</h4>
             <ul>
-              <li>📞 +254 721 427 329</li>
+              <li>📞 +254 719 166 196</li>
               <li>✉️ marketing@skyler-fel.com</li>
               <li>
                 📍 Airport North Road, Sphinx Godowns, Embakasi District, Kenya

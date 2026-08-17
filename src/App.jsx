@@ -4,10 +4,18 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import ProductPage from "./pages/ProductPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import Journal from "./pages/Journal";
+import About from "./pages/About";
+import FAQ from "./pages/FAQ";
+import JournalArticle from "./pages/JournalArticle";
+import SignatureProductDetail from "./pages/SignatureProductDetail";
+
 
 import CartDrawer from "./components/CartDrawer";
 import WhatsAppButton from "./components/WhatsAppButton";
+
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -78,8 +86,15 @@ function App() {
           path="/product/:id"
           element={<ProductDetailPage addToCart={addToCart} />}
         />
+        <Route path="/about" element={<About />} />
+        <Route path="/productpage" element={<ProductPage />} />
 
         <Route path="/contact" element={<Contact />} />
+        <Route path="/journal" element={<Journal/>} />
+        <Route path="/journal/:slug" element={<JournalArticle />} />
+        <Route path="/signature/:id" element={<SignatureProductDetail />} />
+        <Route path="/faq" element={<FAQ/>}/>
+
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     

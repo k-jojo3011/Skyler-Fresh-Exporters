@@ -1,0 +1,126 @@
+/* ==========================================================================
+   SkylerFresh — Shared Design Tokens
+   Concept: Export Manifest — the site borrows its visual language from
+   shipping documentation, harvest logs, and certification stamps. Blue/
+   black/white stays the base system; a single brass "stamp" accent is
+   spent only on the signature certification mark, nowhere else.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Core palette */
+  --sf-ink:      #0B1D33;   /* near-black navy — text, dark sections */
+  --sf-blue:     #1D4E89;   /* primary blue */
+  --sf-sky:      #6E9DC9;   /* secondary, lighter blue */
+  --sf-paper:    #F6F5F1;   /* warm off-white — "paper" background */
+  --sf-white:    #FFFFFF;
+  --sf-line:     #D8D6CE;   /* hairline rules, on paper */
+  --sf-line-dark: rgba(255,255,255,0.16); /* hairline rules, on ink */
+
+  /* The one accent — used only for the stamp/signature element */
+  --sf-brass:    #A9782E;
+
+  /* Type */
+  --sf-display: 'Fraunces', Georgia, serif;
+  --sf-mono:    'IBM Plex Mono', 'Courier New', monospace;
+  --sf-body:    'Inter', -apple-system, sans-serif;
+
+  /* Rhythm */
+  --sf-radius: 2px;
+  --sf-gutter: clamp(20px, 5vw, 64px);
+}
+
+.sf-root, .sf-root * {
+  box-sizing: border-box;
+}
+
+.sf-root {
+  background: var(--sf-paper);
+  color: var(--sf-ink);
+  font-family: var(--sf-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sf-root a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sf-root :focus-visible {
+  outline: 2px solid var(--sf-blue);
+  outline-offset: 3px;
+}
+
+/* Eyebrow / manifest field label */
+.sf-field-label {
+  font-family: var(--sf-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sf-blue);
+}
+
+.sf-display {
+  font-family: var(--sf-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Perforated divider — stands in for a manifest tear-line */
+.sf-tearline {
+  position: relative;
+  height: 1px;
+  background: var(--sf-line);
+  margin: 0;
+}
+.sf-tearline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--sf-paper) 1.5px, transparent 1.6px);
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+}
+
+/* Certification stamp — the signature element, reused sparingly */
+.sf-stamp {
+  --stamp-size: 88px;
+  width: var(--stamp-size);
+  height: var(--stamp-size);
+  border-radius: 50%;
+  border: 1.5px solid var(--sf-brass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  transform: rotate(-8deg);
+}
+.sf-stamp::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--sf-brass);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+.sf-stamp-text {
+  font-family: var(--sf-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  color: var(--sf-brass);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-root * { animation: none !important; transition: none !important; }
+}
+
+@media (max-width: 640px) {
+  .sf-stamp { --stamp-size: 68px; }
+  .sf-stamp-text { font-size: 7px; }
+}

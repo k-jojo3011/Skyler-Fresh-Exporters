@@ -11,9 +11,9 @@ import WhyChooseUs        from "../components/WhyChooseUs";
 import ProductGrid        from "../components/ProductGrid";
 import HeritageSection       from "../components/HeritageSection";
 import Certifications    from "../components/Certifications";
-import JournalSection     from "../components/JournalSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import NewsletterSection  from "../components/NewsletterSection";
+import FAQHomeSection from "../components/FAQHomeSection";
 import Footer             from "../components/Footer";
 
 // ✅ Props come from App.js — no useState for cart here
@@ -29,22 +29,25 @@ export default function Home({ addToCart, cartCount, openCart }) {
         setCurrency={setCurrencyCode}
       />
 
-      <main className="page-layout">
+      <main
+        className="page-layout"
+        style={{ display: "flex", flexDirection: "column", gap: "64px", marginBottom: "64px" }}
+      >
         <HeroSection />
 
         {/* ✅ addToCart passed straight through — no wrapper needed */}
-   
+
         <SignatureBlooms addToCart={addToCart} />
         <WhyChooseUs />
         <CategorySection addToCart={addToCart} />
-        <HeritageSection />
+      {/*<HeritageSection /> */}
         <ProductGrid addToCart={addToCart} />
-        <Certifications/>
         <NewsletterSection />
+        <TestimonialsSection/>
+        <Certifications/>
+        <FAQHomeSection/>
       </main>
-
       <Footer />
-
       {/* ✅ NO CartDrawer here — it lives in App.js */}
     </>
   );

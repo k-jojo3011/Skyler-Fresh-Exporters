@@ -1,8 +1,10 @@
 // src/components/ProductGrid.jsx
-// Cards are now clickable — click image or card → ProductDetailPage
+// Cards are clickable → ProductDetailPage.
+// "Add To Cart" replaced with "Request Quote" → opens a quote-request
+// modal (name, email, buyer type, country, volume/week) instead of
+// adding to a cart, matching SkylerFresh's B2B enquiry-only model.
 import { useState } from "react";
 import { useCurrency } from "../context/CurrencyContext";
-import ProductDetailPage from "../pages/ProductDetailPage";
 import { useNavigate } from "react-router-dom";
 
 import rose    from "../assets/images/BlueRose.jpg";
@@ -48,7 +50,6 @@ const styles = `
   .pg-card-price { font-size: 14px; font-weight: 500; color: #1a6abf; margin-bottom: 14px; }
   .pg-add-btn { margin-top: auto; width: 100%; padding: 10px 0; border: 1.5px solid #0d1117; background: transparent; color: #0d1117; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.25s, color 0.25s; border-radius: 2px; font-family: 'DM Sans', sans-serif; }
   .pg-add-btn:hover { background: #0d1117; color: #fff; }
-  .pg-add-btn.added { background: #1a6abf; border-color: #1a6abf; color: #fff; }
   .pg-right { position: sticky; top: 0; height: 100vh; overflow: hidden; }
   .pg-hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .pg-hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(13,17,23,0.18) 0%, rgba(26,106,191,0.12) 100%); }
@@ -58,38 +59,64 @@ const styles = `
   .pg-hero-line { width: 36px; height: 1.5px; background: rgba(255,255,255,0.6); margin-bottom: 12px; }
   .pg-toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(60px); background: #0d1117; color: #fff; font-size: 12px; letter-spacing: 0.12em; padding: 12px 28px; opacity: 0; transition: transform 0.35s, opacity 0.35s; pointer-events: none; white-space: nowrap; z-index: 999; border-radius: 4px; }
   .pg-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* ── Quote request modal ── */
+  .pg-modal-backdrop { position: fixed; inset: 0; background: rgba(13,17,23,0.55); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+  .pg-modal { background: #fff; width: 100%; max-width: 420px; border-radius: 6px; padding: 32px 28px 28px; position: relative; max-height: 90vh; overflow-y: auto; }
+  .pg-modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 20px; line-height: 1; color: #8aabcc; cursor: pointer; }
+  .pg-modal-close:hover { color: #0d1117; }
+  .pg-modal-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8aabcc; margin-bottom: 6px; }
+  .pg-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: #0d1117; margin-bottom: 20px; }
+  .pg-modal-title em { font-style: italic; color: #1a6abf; }
+  .pg-form { display: flex; flex-direction: column; gap: 14px; }
+  .pg-form label { display: flex; flex-direction: column; gap: 5px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7a8c; }
+  .pg-form input, .pg-form select {
+    font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 10px 12px;
+    border: 1px solid #dfe6ee; border-radius: 3px; color: #0d1117; background: #fafcff;
+  }
+  .pg-form input:focus, .pg-form select:focus { outline: none; border-color: #1a6abf; background: #fff; }
+  .pg-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pg-form-submit {
+    margin-top: 6px; background: #0d1117; color: #fff; border: none; padding: 13px 0;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    border-radius: 3px; cursor: pointer; transition: background 0.2s ease;
+  }
+  .pg-form-submit:hover { background: #1a6abf; }
+  .pg-form-success { text-align: center; padding: 20px 0 4px; }
+  .pg-form-success p { font-size: 14px; color: #4a5a6e; margin-top: 8px; }
+
   @media (max-width: 900px) { .pg-wrapper { grid-template-columns: 1fr; } .pg-right { display: none; } .pg-left { padding: 36px 20px; } .pg-title { font-size: 32px; } }
 `;
 
-export default function ProductGrid({ addToCart }) {
-  const [addedIds,     setAddedIds]     = useState([]);
-  const [toastVisible, setToastVisible] = useState(false);
-  const [toastMsg,     setToastMsg]     = useState("");
-  const [detailProduct, setDetailProduct] = useState(null); // null = grid, object = detail
+const BUYER_TYPES = ["Florist", "Wholesaler", "Retail / supermarket chain", "Event company", "Other"];
+
+export default function ProductGrid() {
+  const [quoteItem, setQuoteItem] = useState(null); // null = closed, object = open for that product
+  const [submitted, setSubmitted] = useState(false);
   const { formatPrice } = useCurrency();
   const navigate = useNavigate();
 
-  // Open product detail page
-function openDetail(item, e) {
-  e.stopPropagation();
-  navigate(`/product/${item.id}`);
-}
-
-  function handleAdd(item, e) {
+  function openDetail(item, e) {
     e.stopPropagation();
-    if (addToCart) addToCart({ ...item, quantity: 1, price: item.price });
-    setAddedIds(prev => [...prev, item.id]);
-    setToastMsg(`${item.name} added to cart`);
-    setToastVisible(true);
-    setTimeout(() => {
-      setToastVisible(false);
-      setAddedIds(prev => prev.filter(id => id !== item.id));
-    }, 2000);
+    navigate(`/product/${item.id}`);
   }
 
-  // If a product is selected → show detail page
+  function openQuote(item, e) {
+    e.stopPropagation();
+    setSubmitted(false);
+    setQuoteItem(item);
+  }
 
-  // Otherwise → show grid
+  function closeQuote() {
+    setQuoteItem(null);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // Wire this up to your enquiry pipeline / CRM.
+    setSubmitted(true);
+  }
+
   return (
     <div className="pg-root">
       <style>{styles}</style>
@@ -110,11 +137,9 @@ function openDetail(item, e) {
                 key={item.id}
                 onClick={e => openDetail(item, e)}
               >
-                {/* Image — clicking opens detail */}
                 <div className="pg-card-img-wrap">
                   <img src={item.img} alt={item.name} loading="lazy" />
                   <div className="pg-card-badge">{item.category}</div>
-                  {/* Hover overlay hint */}
                   <div className="pg-view-hint">
                     <span>View product</span>
                   </div>
@@ -125,10 +150,10 @@ function openDetail(item, e) {
                   <p className="pg-card-category">{item.category}</p>
                   <p className="pg-card-price">{formatPrice(item.price)}</p>
                   <button
-                    className={`pg-add-btn${addedIds.includes(item.id) ? " added" : ""}`}
-                    onClick={e => handleAdd(item, e)}
+                    className="pg-add-btn"
+                    onClick={e => openQuote(item, e)}
                   >
-                    {addedIds.includes(item.id) ? "Added ✓" : "Add To Cart"}
+                    Request Quote
                   </button>
                 </div>
               </div>
@@ -148,7 +173,57 @@ function openDetail(item, e) {
         </div>
 
       </div>
-      <div className={`pg-toast${toastVisible ? " show" : ""}`}>{toastMsg}</div>
+
+      {/* Quote request modal */}
+      {quoteItem && (
+        <div className="pg-modal-backdrop" onClick={closeQuote}>
+          <div className="pg-modal" onClick={e => e.stopPropagation()}>
+            <button className="pg-modal-close" onClick={closeQuote} aria-label="Close">×</button>
+
+            {submitted ? (
+              <div className="pg-form-success">
+                <p className="pg-modal-eyebrow">Request sent</p>
+                <h3 className="pg-modal-title">You're all set</h3>
+                <p>The export desk will reply with a quote for <strong>{quoteItem.name}</strong> within one business day.</p>
+              </div>
+            ) : (
+              <>
+                <p className="pg-modal-eyebrow">Request a quote</p>
+                <h3 className="pg-modal-title">{quoteItem.name}</h3>
+
+                <form className="pg-form" onSubmit={handleSubmit}>
+                  <label>
+                    Name
+                    <input type="text" required placeholder="Your full name" />
+                  </label>
+                  <label>
+                    Email
+                    <input type="email" required placeholder="you@company.com" />
+                  </label>
+                  <label>
+                    Buyer type
+                    <select required defaultValue="">
+                      <option value="" disabled>Select one</option>
+                      {BUYER_TYPES.map(t => <option key={t}>{t}</option>)}
+                    </select>
+                  </label>
+                  <div className="pg-form-row">
+                    <label>
+                      Country
+                      <input type="text" required placeholder="e.g. Netherlands" />
+                    </label>
+                    <label>
+                      Volume / week
+                      <input type="text" required placeholder="e.g. 500 stems" />
+                    </label>
+                  </div>
+                  <button type="submit" className="pg-form-submit">Send Request</button>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

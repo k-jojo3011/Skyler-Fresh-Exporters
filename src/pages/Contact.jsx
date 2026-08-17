@@ -1,17 +1,29 @@
 import { useState } from "react";
 import "../styles/Contact.css";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Contact() {
   return (
     <>
+      <Navbar />
+
       {/* HERO */}
       <section className="contact-hero">
-        <div className="contact-overlay">
-          <div className="container">
-            <h1>Contact Skyler Fresh Exporters</h1>
-            <p>
-              Premium Kenyan flowers delivered globally with reliability and care.
-            </p>
+        <div className="contact-hero-inner">
+          <div className="contact-hero-text">
+            <h1>Contact Us</h1>
+            <div className="contact-breadcrumb">
+              <a href="/">Home</a>
+              <span>›</span>
+              <span>Contact Us</span>
+            </div>
+          </div>
+          <div className="contact-hero-media">
+            <img
+              src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=900&q=80"
+              alt="Skyler Fresh export essentials"
+            />
           </div>
         </div>
       </section>
@@ -21,7 +33,12 @@ export default function Contact() {
         <div className="container contact-grid">
 
           {/* LEFT */}
-          <div className="contact-info">
+          <div
+            className="contact-info"
+            style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1487070183336-b863922373d4?w=900&q=80)' }}
+          >
+            <div className="contact-info-scrim" />
+            <div className="contact-info-content">
             <h2>Get In Touch</h2>
             <p>
               We are here to support your floral export needs. Reach out to us
@@ -36,7 +53,7 @@ export default function Contact() {
 
             <div className="contact-block">
               <h3>Phone</h3>
-              <a href="tel:+254721427329">+254 721 427 329</a>
+              <a href="tel:+254721427329">+254 719 166 196</a>
             </div>
 
             <div className="contact-block">
@@ -48,6 +65,7 @@ export default function Contact() {
               >
                 Airport North Road, Sphinx Godowns, Embakasi district
               </a>
+            </div>
             </div>
           </div>
 
@@ -68,10 +86,26 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* FOOTER NOTE */}
-      <footer className="contact-footer">
-        © 2025 Skyler Fresh Exporters. All rights reserved.
-      </footer>
+      {/* MAP */}
+      <section className="contact-map">
+        <iframe
+          title="Skyler Fresh Exporters location"
+          src="https://www.google.com/maps?q=Airport+North+Road,+Sphinx+Godowns,+Embakasi+district,+Nairobi&output=embed"
+          width="100%"
+          height="420"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </section>
+
+      <Footer />
     </>
   );
 }
+
+
+
+
+

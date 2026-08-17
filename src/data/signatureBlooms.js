@@ -7,7 +7,7 @@ import rose from "../assets/images/Red1.jpg";
 import spray1 from "../assets/images/Jumilia.JPG";
 import aurora from "../assets/images/Aurora.jpg";
 import tulip from "../assets/images/White Chapel.JPG";
-import chive from "../assets/images/chives.jpg";
+import chive from "../assets/images/Chives.jpg";
 import agapa from "../assets/images/Agapanthus.jpg";
 import pina  from "../assets/images/Pina colada Yellow.jpeg";
 import cava from "../assets/images/Pastela Cava.jpeg";
